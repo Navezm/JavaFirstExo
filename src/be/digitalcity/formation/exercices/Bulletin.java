@@ -10,8 +10,16 @@ public class Bulletin {
         remplirNotes();
     }
 
+    public static int moyenne(int[] tab){
+        int total = 0;
+        for (int i = 0; i < tab.length; i++) {
+            total =+ tab[i];
+        }
+        return total;
+    }
+
     private static void remplirNotes() {
-        HashMap<String, ArrayList> bulletin = new HashMap<>();
+        HashMap<String, int[]> bulletin = new HashMap<>();
         Scanner scan = new Scanner(System.in);
         boolean flag = false;
         int nbCours = 4;
@@ -22,10 +30,10 @@ public class Bulletin {
             String nom = scan.nextLine();
 
             // Entrer toutes les notes
-            ArrayList<Integer> tab = new ArrayList<>();
+            int[] tab = new int[nbCours];
             for (int i = 0; i < nbCours; i++) {
-                System.out.println("Entrez la note n°"+ (i+1) +" :");
-                tab.add(scan.nextInt());
+                System.out.println("Entrez la note n°"+ (i + 1) +" :");
+                tab[i] = scan.nextInt();
             }
 
             // Ajout dans le Hashmap
@@ -37,6 +45,6 @@ public class Bulletin {
             scan.nextLine();
         } while(flag);
 
-        bulletin.forEach((x, y) -> System.out.println(x + " a obtenu : "+ y + " \nAvec une moyenne de : " + ));
+        bulletin.forEach((x, y) -> System.out.println(x + " a obtenu : "+ y + " \nAvec une moyenne de : " + (moyenne(y))));
     }
 }
