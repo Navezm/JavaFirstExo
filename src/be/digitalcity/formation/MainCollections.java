@@ -5,7 +5,29 @@ import java.util.*;
 public class MainCollections {
     public static void main(String[] args) {
   //      tableauMultiDimensionnel();
-        CollectionsListes();
+  //      CollectionsListes();
+        tableauAssociatifs();
+    }
+
+    private static void tableauAssociatifs() {
+        HashMap<Integer, String> map = new HashMap<>();
+        map.put(1, "Bonjour");
+        map.put(2, "Hello");
+
+        // Donne la clé + la valeur
+        for (Map.Entry<Integer, String> entry : map.entrySet()){
+            System.out.println(entry.getKey() + " -> "+ entry.getValue());
+        }
+
+        // Donne toutes les clés
+        for (Integer key : map.keySet()){
+            System.out.println(key);
+        }
+
+        // Donne toutes les valeurs
+        for (String value : map.values()){
+            System.out.println(value);
+        }
     }
 
     private static void CollectionsListes() {
@@ -31,6 +53,8 @@ public class MainCollections {
         set.forEach(x -> System.out.println(x));
 
         LinkedHashSet<Integer> linkedSet = new LinkedHashSet<>();
+
+
     }
 
     public static void tableauMultiDimensionnel() {
