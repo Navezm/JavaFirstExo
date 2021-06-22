@@ -1,9 +1,6 @@
 package be.digitalcity.formation.exercices;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class MasterMind {
     public static void main(String[] args) {
@@ -38,7 +35,7 @@ public class MasterMind {
     // Random combination from computer
     public static void computerCombination(String[] combination){
         for (int i = 0; i < combination.length; i++) {
-            int n = 1+ (int)((Math.random() * (4 - 1)) + 1);
+            int n = 1 + (int)((Math.random() * (4 - 1)) + 1);
             switch (n){
                 case 1:
                     combination[i] = "B";
@@ -73,15 +70,24 @@ public class MasterMind {
         boolean found = false;
         int foundWhite = 0, foundRed = 0;
 
-        System.out.println("Player Two enter your trial :");
+        System.out.println("Player Two enter your trial");
         secretCombination(tries);
+
+        // Empty list for counting the colors
+        List<Integer> alreadyCount = new ArrayList<>();
 
         // Finding if it's the right color in the right place
         for (int i = 0; i < combination.size(); i++) {
             if (combination.get(i).equals(tries[i])){
+                alreadyCount.add(i);
                 foundRed ++;
-            } else if (combination.contains(tries[i])){
-                foundWhite ++;
+            } else {
+                for (int j = 0; j < combination.size(); j++) {
+                    if (combination.get(j).equals(tries[i]) && !alreadyCount.contains(i)){
+                        alreadyCount.add(i);
+                        foundWhite ++;
+                    }
+                }
             }
         }
 
@@ -95,6 +101,8 @@ public class MasterMind {
         if (foundRed == combination.size()){
             found = true;
         }
+        foundWhite = 0;
+        foundRed = 0;
         return found;
     }
 }
