@@ -5,10 +5,10 @@ import java.util.*;
 public class MasterMind {
     public static void main(String[] args) {
         // Secret combination with a Human
-        // String[] combination = new String[4];
-        // System.out.println("Player One you can enter the secret combination :");
-        // secretCombination(combination);
-        // List<String> combinationArray = Arrays.asList(combination);
+            // String[] combination = new String[4];
+            // System.out.println("Player One you can enter the secret combination :");
+            // secretCombination(combination);
+            // List<String> combinationArray = Arrays.asList(combination);
 
         // Secret combination with Computer
         String[] combination = new String[4];
@@ -76,25 +76,26 @@ public class MasterMind {
 
         // Empty list for counting the colors
         List<Integer> alreadyCount = new ArrayList<>();
+        List<Integer> alreadyCompared = new ArrayList<>();
 
         // Finding if it's the right color in the right place
         for (int i = 0; i < combination.size(); i++) {
             if (combination.get(i).equals(tries[i])){
                 alreadyCount.add(i);
                 foundRed ++;
-            } else {
-                for (int j = 0; j < combination.size(); j++) {
-                    if (combination.get(i).equals(tries[j])){
-                        if (!alreadyCount.contains(i)){
-                            alreadyCount.add(i);
-                            foundWhite ++;
-                        } else {
-
-                        }
+            }
+        }
+        for (int i = 0; i < combination.size(); i++) {
+            for (int j = 0; j < combination.size(); j++) {
+                if (tries[i].equals(combination.get(j))){
+                    if (!alreadyCount.contains(j) && !alreadyCompared.contains(i)){
+                        alreadyCompared.add(i);
+                        foundWhite ++;
                     }
                 }
             }
         }
+
         System.out.println(alreadyCount);
 
         // Print the result and check if the combination is found
