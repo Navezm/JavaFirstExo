@@ -2,15 +2,22 @@ package be.digitalcity.formation.exercices;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class MasterMind {
     public static void main(String[] args) {
-        // Secret combination
+        // Secret combination with a Human
+        // String[] combination = new String[4];
+        // System.out.println("Player One you can enter the secret combination :");
+        // secretCombination(combination);
+        // List<String> combinationArray = Arrays.asList(combination);
+
+        // Secret combination with Computer
         String[] combination = new String[4];
-        System.out.println("Player One you can enter the secret combination :");
-        secretCombination(combination);
+        computerCombination(combination);
         List<String> combinationArray = Arrays.asList(combination);
+
 
         // Try of the player
         String[] tries = new String[4];
@@ -26,6 +33,28 @@ public class MasterMind {
         } else {
             System.out.println("Too bad, well try again you'll do better next time!");
         }
+    }
+
+    // Random combination from computer
+    public static void computerCombination(String[] combination){
+        for (int i = 0; i < combination.length; i++) {
+            int n = 1+ (int)((Math.random() * (4 - 1)) + 1);
+            switch (n){
+                case 1:
+                    combination[i] = "B";
+                    break;
+                case 2:
+                    combination[i] = "G";
+                    break;
+                case 3:
+                    combination[i] = "R";
+                    break;
+                case 4:
+                    combination[i] = "Y";
+                    break;
+            }
+        }
+        System.out.println(Arrays.toString(combination));
     }
 
     public static void secretCombination(String[] combination){
@@ -56,7 +85,7 @@ public class MasterMind {
             }
         }
 
-        // Print the resultat and check if the combination is found
+        // Print the result and check if the combination is found
         if (foundRed != 0){
             System.out.println("You've found " + foundRed + " good color(s) and at the right place !");
         }
