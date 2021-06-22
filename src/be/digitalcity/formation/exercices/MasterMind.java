@@ -21,6 +21,7 @@ public class MasterMind {
         int nbTries = 0;
         boolean found;
         do {
+            System.out.println("Numbers of trials left: " + (12-nbTries));
             found = trialPlayer(combinationArray, tries);
             nbTries ++;
         } while (!found && nbTries <= 12);
@@ -83,20 +84,25 @@ public class MasterMind {
                 foundRed ++;
             } else {
                 for (int j = 0; j < combination.size(); j++) {
-                    if (combination.get(j).equals(tries[i]) && !alreadyCount.contains(i)){
-                        alreadyCount.add(i);
-                        foundWhite ++;
+                    if (combination.get(i).equals(tries[j])){
+                        if (!alreadyCount.contains(i)){
+                            alreadyCount.add(i);
+                            foundWhite ++;
+                        } else {
+
+                        }
                     }
                 }
             }
         }
+        System.out.println(alreadyCount);
 
         // Print the result and check if the combination is found
         if (foundRed != 0){
             System.out.println("You've found " + foundRed + " good color(s) and at the right place !");
         }
         if (foundWhite != 0){
-            System.out.println("You've found " + foundWhite + " good color(s) but not at the right place !");
+            System.out.println("You've found " + foundWhite + " good color(s) but not at the right place !\n");
         }
         if (foundRed == combination.size()){
             found = true;
